@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You 💙 | Onkar</title>
+<meta name="description" content="A special thank-you from Onkar for your birthday wishes.">
+<meta property="og:title" content="A Special Thank You 💙">
+<meta property="og:description" content="You made my birthday more special. Thank you! 🎂✨">
+<meta property="og:type" content="website">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  color:#fff;overflow:hidden;
+  background:radial-gradient(circle at 50% 20%,#172b5b 0,#0a1024 42%,#03050d 100%);
+}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(45px);opacity:.35;animation:float 8s ease-in-out infinite}
+.o1{width:220px;height:220px;background:#4169ff;left:-60px;top:10%}
+.o2{width:260px;height:260px;background:#8b5cf6;right:-90px;bottom:5%;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-25px) translateX(15px)}}
+.card{
+  position:relative;width:min(92%,520px);min-height:620px;margin:4vh auto;
+  padding:34px 26px;border:1px solid rgba(255,255,255,.16);
+  border-radius:30px;background:rgba(10,16,38,.62);backdrop-filter:blur(18px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);text-align:center;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+}
+.badge{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-bottom:22px}
+h1{font-size:clamp(42px,12vw,68px);line-height:1.02;margin-bottom:18px}
+.gradient{background:linear-gradient(90deg,#fff,#9ec5ff,#d8b4fe);-webkit-background-clip:text;color:transparent}
+.name{color:#9ec5ff}
+p{font-size:17px;line-height:1.7;color:#d9def0;max-width:410px}
+button{
+  margin-top:28px;padding:14px 25px;border:0;border-radius:999px;
+  color:#071022;background:#fff;font-weight:800;font-size:15px;cursor:pointer;
+  box-shadow:0 10px 30px rgba(100,150,255,.25);transition:.25s
+}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.hidden{display:none}
+.cake{font-size:70px;animation:bounce 1.8s infinite}
+@keyframes bounce{50%{transform:translateY(-8px)}}
+.heart{font-size:42px;margin:20px 0 5px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.16)}}
+.footer{position:absolute;bottom:22px;font-size:12px;color:#9ba5c2;letter-spacing:1px}
+.confetti{position:fixed;top:-15px;width:8px;height:14px;animation:fall linear forwards;z-index:5}
+@keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(720deg);opacity:.9}}
+.fade{animation:fade .8s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(max-height:700px){.card{min-height:570px;margin:2vh auto}}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+<main class="card">
+  <section id="intro" class="fade">
+    <div class="badge">A little message for you ✨</div>
+    <div class="cake">🎂</div>
+    <h1 class="gradient">Hey, <span id="name1" class="name">My Friend</span>! 👋</h1>
+    <p>You made my birthday a little more special just by remembering me.</p>
+    <button id="openBtn">✨ Open My Thank You</button>
+  </section>
+
+  <section id="thanks" class="hidden">
+    <div class="heart">💙</div>
+    <div class="badge">From Onkar</div>
+    <h1 class="gradient">Thank You,<br><span id="name2" class="name">My Amazing Friend</span>!</h1>
+    <p>
+      Thank you so much for your birthday wish! 🎉<br>
+      Your message genuinely made me smile and made my day more memorable.
+    </p>
+    <p style="margin-top:14px">Really grateful to have a friend like you. ✨</p>
+    <button id="againBtn">🎉 Celebrate Again</button>
+  </section>
+
+  <div class="footer">MADE WITH ❤️ BY ONKAR</div>
+</main>
+
+<script>
+const params=new URLSearchParams(location.search);
+const raw=params.get("name");
+const friend=raw ? decodeURIComponent(raw.replace(/\+/g," ")).trim() : "My Amazing Friend";
+document.getElementById("name1").textContent=friend;
+document.getElementById("name2").textContent=friend;
+
+function confetti(){
+  for(let i=0;i<85;i++){
+    const c=document.createElement("i");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.setProperty("--x",(Math.random()*240-120)+"px");
+    c.style.animationDuration=(2.5+Math.random()*2.5)+"s";
+    c.style.animationDelay=(Math.random()*.8)+"s";
+    c.style.background=`hsl(${Math.random()*360},85%,70%)`;
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),6000);
+  }
+}
+document.getElementById("openBtn").onclick=()=>{
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("thanks").classList.remove("hidden");
+  document.getElementById("thanks").classList.add("fade");
+  confetti();
+};
+document.getElementById("againBtn").onclick=confetti;
+</script>
+</body>
+</html>
